@@ -1,0 +1,10 @@
+certificate:
+  keyStorePath: classpath:certs/test_jks.jks
+  #keyStorePath: classpath:certs/PRE-IDEP.p12
+  keyStorePassword: 1234
+  #keyStorePassword: C40FA4
+  keyStoreType: PKCS12
+  certAlias: test_1
+  #certAlias: pre-idep
+  privateKeyPassword: 1234
+  #privateKeyPassword: C40FA4
