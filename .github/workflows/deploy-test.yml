@@ -10,8 +10,6 @@ jobs:
     name: deploy-test
     runs-on: ubuntu-latest
     environment: test
-    needs: build
-    if: success()
 
     steps:
       - name: Checkout Repository
