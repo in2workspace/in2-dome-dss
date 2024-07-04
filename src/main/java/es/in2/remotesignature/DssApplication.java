@@ -6,10 +6,10 @@ import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 
 @SpringBootApplication
 @ConfigurationPropertiesScan
-public class In2RemoteSignatureApplication {
+public class DssApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(In2RemoteSignatureApplication.class, args);
+		SpringApplication.run(DssApplication.class, args);
 	}
 
 }
