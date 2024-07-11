@@ -25,4 +25,4 @@ WORKDIR /app
 COPY --from=TEMP_BUILD /home/gradle/src/build/libs/*.jar /app/
 # COPY --from=TEMP_BUILD /build/applicationinsights-agent-3.4.8.jar /app/applicationinsights-agent-3.4.8.jar
 # COPY --from=TEMP_BUILD /build/applicationinsights.json /app/applicationinsights.json
-ENTRYPOINT ["java", "-javaagent:applicationinsights-agent-3.4.8.jar", "-jar", "/app/remote-signature-ms-0.6.0.jar"]
+ENTRYPOINT ["java", "-jar", "/app/remote-signature-ms-0.6.0.jar"]
