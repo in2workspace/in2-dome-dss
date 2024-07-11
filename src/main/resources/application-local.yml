@@ -1,0 +1,31 @@
+app:
+  properties:
+    authorization-server:
+      issuer-uri: http://localhost:8080
+      public-issuer-uri: http://localhost:8080
+    certificate:
+      key: https://localhost:8080
+    open-api:
+      server:
+        description: Remote signature server
+        url: http://localhost:8050
+      info:
+        title: Remote signature API
+        version: 1.0.0-SNAPSHOT
+        description: null
+        termsOfService: https://example.com/terms-of-service
+        license:
+          name: Apache 2.0
+          url: https://www.apache.org/licenses/LICENSE-2.0.html
+        contact:
+          email: contact@in2.es
+          name: in2
+          url: https://www.in2.es
+
+hashicorp:
+  vault:
+    path: /kv
+    host: localhost
+    port: 8200
+    scheme: http
+    token: tokenValue
