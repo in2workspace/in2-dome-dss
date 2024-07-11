@@ -1,5 +1,6 @@
 package es.in2.remotesignature.api.config;
 
+import es.in2.remotesignature.api.config.properties.AuthServerProperties;
 import es.in2.remotesignature.api.util.Utils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,15 +20,28 @@ import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 public class SecurityConfig {
 
     private final AppConfig appConfig;
+    private final AuthServerProperties authServerProperties;
 
+
+//    @Bean
+//    @Profile({"dev", "prod"})
+//    public JwtDecoder jwtDecoder() {
+//        NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder
+//                .withJwkSetUri(getIssuerUri() + "/realms/EAAProvider/protocol/openid-connect/certs")
+//                .jwsAlgorithm(SignatureAlgorithm.RS256)
+//                .build();
+//        jwtDecoder.setJwtValidator(JwtValidators.createDefaultWithIssuer(getPublicIssuerUri() + "/cross-keycloak/realms/EAAProvider"));
+//        return jwtDecoder;
+//    }
     @Bean
-    @Profile({"dev", "prod"})
+    @Profile("!local")
     public JwtDecoder jwtDecoder() {
         NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder
-                .withJwkSetUri(getIssuerUri() + "/realms/EAAProvider/protocol/openid-connect/certs")
+                .withJwkSetUri(authServerProperties.internalDomain()+"/realms/"+authServerProperties.realm()+"/protocol/openid-connect/certs")
                 .jwsAlgorithm(SignatureAlgorithm.RS256)
                 .build();
-        jwtDecoder.setJwtValidator(JwtValidators.createDefaultWithIssuer(getPublicIssuerUri() + "/cross-keycloak/realms/EAAProvider"));
+        jwtDecoder.setJwtValidator(JwtValidators.createDefaultWithIssuer(authServerProperties.externalDomain()+"/realms/"+authServerProperties.realm()));
+
         return jwtDecoder;
     }
 

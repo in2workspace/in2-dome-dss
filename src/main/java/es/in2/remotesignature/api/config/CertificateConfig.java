@@ -1,5 +1,6 @@
 package es.in2.remotesignature.api.config;
 
+import es.in2.remotesignature.api.config.properties.CertificatePassProperties;
 import es.in2.remotesignature.api.exception.LoadKeyStoreException;
 import es.in2.remotesignature.api.service.VaultService;
 import es.in2.remotesignature.vault.model.secret.KeyVaultSecret;
@@ -19,6 +20,7 @@ public class CertificateConfig {
     private static final String AZURE_NOT_SET_PASSWORD = "";
     private final VaultService vaultService;
     private final AppConfig appConfig;
+    private final CertificatePassProperties certificatePassProperties;
 
     public InputStream getKeyStoreInputStream() {
         String certificateKey = appConfig.getCertificateKey();
@@ -30,7 +32,7 @@ public class CertificateConfig {
     public Pkcs12SignatureToken loadKeyStore() {
         Pkcs12SignatureToken token;
         try {
-            token = new Pkcs12SignatureToken(getKeyStoreInputStream(), new KeyStore.PasswordProtection(AZURE_NOT_SET_PASSWORD.toCharArray()));
+            token = new Pkcs12SignatureToken(getKeyStoreInputStream(), new KeyStore.PasswordProtection(certificatePassProperties.keyStorePassword().toCharArray()));
         } catch (Exception e) {
             throw new LoadKeyStoreException(e);
         }

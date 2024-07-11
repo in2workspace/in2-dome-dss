@@ -20,9 +20,9 @@ FROM eclipse-temurin:17.0.8.1_1-jre-jammy
 ENV APP_CONFIG_SOURCE_NAME=azure
 ENV VAULT_ADAPTER_IMPLEMENTATION=azure
 # temporary workaround until environment variables are correctly set in the aca
-ENV SPRING_PROFILES_ACTIVE=dev
+# ENV SPRING_PROFILES_ACTIVE=dev
 WORKDIR /app
 COPY --from=TEMP_BUILD /home/gradle/src/build/libs/*.jar /app/
 # COPY --from=TEMP_BUILD /build/applicationinsights-agent-3.4.8.jar /app/applicationinsights-agent-3.4.8.jar
 # COPY --from=TEMP_BUILD /build/applicationinsights.json /app/applicationinsights.json
-ENTRYPOINT ["java", "-javaagent:applicationinsights-agent-3.4.8.jar", "-jar", "/app/remote-signature-ms-1.0.0.jar"]
+ENTRYPOINT ["java", "-javaagent:applicationinsights-agent-3.4.8.jar", "-jar", "/app/remote-signature-ms-0.6.0.jar"]

@@ -29,12 +29,14 @@ spring:
 
 ## App Configuration azure example
 app:
+  config-source:
+    name: yaml
   properties:
     authorization-server:
       issuer-uri: aca-cross-keycloak-ms-uri
       public-issuer-uri: public-api-uri-for-iep-apps # key not available atm
     certificate:
-      key: gene-signing-cert
+      key: dome-digital-identity-cert
     open-api:
       server:
         description: Remote signature server
@@ -52,6 +54,14 @@ app:
           name: in2
           url: https://www.in2.es
 
+auth-server:
+  internal-domain: "http://localhost:8081"
+  external-domain: "http://localhost:8081"
+  realm: CredentialIssuer
+
+vault:
+  provider:
+    name: hashicorp
 
 # AZURE APP CONFIG
 azure:
@@ -79,9 +89,9 @@ hashicorp:
 
 # Server Configuration
 server:
-  port: 8088
+  #port: 8088
   # Local port
-  #port: 8050
+  port: 8050
 
 # Logging Configuration
 logging:
@@ -120,8 +130,4 @@ springdoc:
     operations-sorter: method
 
 certificate:
-  key-store-path: "classpath:certs/zeus.p12"
-  key-store-password: "SAVeJ2Sf"
-  key-store-type: "PKCS12"
-  cert-alias: "zeus olimpos"
-  private-key-password: "SAVeJ2Sf"
+  key-store-password: ""
