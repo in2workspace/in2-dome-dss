@@ -1,0 +1,17 @@
+services:
+
+  vault:
+    image: hashicorp/vault:1.13.3
+    command: /bin/sh /vault/wallet_init.sh
+    cap_add:
+      - IPC_LOCK
+    ports:
+      - "8201:8201"
+    volumes:
+      - vault_data:/vault/logs
+      - vault_data:/vault/file
+      - ./vault_init.sh:/vault/wallet_init.sh
+      - ./vault_config.json:/vault/config/config.json
+
+volumes:
+  vault_data:

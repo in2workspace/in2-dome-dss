@@ -1,7 +1,26 @@
 # Spring Configuration
 spring:
   application:
-    name: remote-signature-ms
+    name: DSS API
+
+vault:
+  uri: "http://localhost:8200"
+  token: "00000000-0000-0000-0000-000000000000"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## App Configuration yml example
 #app:
@@ -59,32 +78,32 @@ auth-server:
   external-domain: "http://localhost:8081"
   realm: CredentialIssuer
 
-vault:
-  provider:
-    name: hashicorp
+#vault:
+#  provider:
+#    name: hashicorp
 
 # AZURE APP CONFIG
-azure:
-  app:
-    config:
-      endpoint: ${APP_CONFIG_ENDPOINT}
-      label:
-        global: service-discovery
+#azure:
+#  app:
+#    config:
+#      endpoint: ${APP_CONFIG_ENDPOINT}
+#      label:
+#        global: service-discovery
 
   # KeyVault Configuration Azure
-  keyvault:
-    endpoint: key-vault-uri #Example for azure configuration
+#  keyvault:
+#    endpoint: key-vault-uri #Example for azure configuration
     #endpoint: https://epu-dev-kv-01.vault.azure.net/ #Example for yml configuration
 
 # KeyVault Configuration Hashicorp
-hashicorp:
-  vault:
-    path: /kv #Example for yml configuration
-    #path: azure-kv-key #Example for azure configuration
-    host: localhost
-    port: 8200
-    scheme: http
-    token: tokenValue
+#hashicorp:
+#  vault:
+#    path: /kv #Example for yml configuration
+#    #path: azure-kv-key #Example for azure configuration
+#    host: localhost
+#    port: 8200
+#    scheme: http
+#    token: tokenValue
 
 
 # Server Configuration
