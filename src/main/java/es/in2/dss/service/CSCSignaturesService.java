@@ -1,5 +1,5 @@
 package es.in2.dss.service;
 
-public interface InfoService {
+public interface CSCSignaturesService {
     // todo: define methods
 }

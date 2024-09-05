@@ -1,5 +1,5 @@
 package es.in2.dss.service;
 
-public interface SignaturesService {
+public interface CSCCredentialsService {
     // todo: define methods
 }

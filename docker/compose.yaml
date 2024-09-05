@@ -1,8 +1,9 @@
 services:
 
   vault:
-    image: hashicorp/vault:1.13.3
-    command: /bin/sh /vault/wallet_init.sh
+    image: hashicorp/vault:1.16.2
+    container_name: vault
+    command: /bin/sh /vault/init.sh
     cap_add:
       - IPC_LOCK
     ports:
@@ -10,8 +11,18 @@ services:
     volumes:
       - vault_data:/vault/logs
       - vault_data:/vault/file
-      - ./vault_init.sh:/vault/wallet_init.sh
-      - ./vault_config.json:/vault/config/config.json
+      - ./scripts/vault-init.sh:/vault/init.sh
+      - ./imports/config.json:/vault/config/config.json
+  dss:
+    #image: in2workspace/remote-signature-ms:v0.6.0
+    image: dss-vault-feature:latest
+    entrypoint: /bin/sh /vault/start-dss.sh
+    #pull_policy: always
+    volumes:
+      - vault_data:/vault
+      - ./scripts/start-dss.sh:/vault/start-dss.sh
+    ports:
+      - "8051:8050"
 
 volumes:
   vault_data:
