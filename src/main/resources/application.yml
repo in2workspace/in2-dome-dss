@@ -1,0 +1,133 @@
+# Spring Configuration
+spring:
+  application:
+    name: remote-signature-ms
+
+## App Configuration yml example
+#app:
+#  properties:
+#    authorization-server:
+#      issuer-uri: http://localhost:8080
+#      public-issuer-uri: http://localhost:8080
+#    certificate:
+#      key: gene-signing-cert
+#    open-api:
+#      server:
+#        description: Remote signature server
+#        url: http://localhost:8050
+#      info:
+#        title: Remote signature API
+#        version: 1.0.0-SNAPSHOT
+#        description: null
+#        termsOfService: https://example.com/terms-of-service
+#        license:
+#          name: Apache 2.0
+#          url: https://www.apache.org/licenses/LICENSE-2.0.html
+#        contact:
+#          email: test@in2.es
+
+
+## App Configuration azure example
+app:
+  config-source:
+    name: yaml
+  properties:
+    authorization-server:
+      issuer-uri: aca-cross-keycloak-ms-uri
+      public-issuer-uri: public-api-uri-for-iep-apps # key not available atm
+    certificate:
+      key: dome-digital-identity-cert
+    open-api:
+      server:
+        description: Remote signature server
+        url: aca-cross-rmt-sign-ms-uri
+      info:
+        title: Remote signature API
+        version: 1.0.0-SNAPSHOT
+        description: null
+        termsOfService: https://example.com/terms-of-service
+        license:
+          name: Apache 2.0
+          url: https://www.apache.org/licenses/LICENSE-2.0.html
+        contact:
+          email: contact@in2.es
+          name: in2
+          url: https://www.in2.es
+
+auth-server:
+  internal-domain: "http://localhost:8081"
+  external-domain: "http://localhost:8081"
+  realm: CredentialIssuer
+
+vault:
+  provider:
+    name: hashicorp
+
+# AZURE APP CONFIG
+azure:
+  app:
+    config:
+      endpoint: ${APP_CONFIG_ENDPOINT}
+      label:
+        global: service-discovery
+
+  # KeyVault Configuration Azure
+  keyvault:
+    endpoint: key-vault-uri #Example for azure configuration
+    #endpoint: https://epu-dev-kv-01.vault.azure.net/ #Example for yml configuration
+
+# KeyVault Configuration Hashicorp
+hashicorp:
+  vault:
+    path: /kv #Example for yml configuration
+    #path: azure-kv-key #Example for azure configuration
+    host: localhost
+    port: 8200
+    scheme: http
+    token: tokenValue
+
+
+# Server Configuration
+server:
+  #port: 8088
+  # Local port
+  port: 8050
+
+# Logging Configuration
+logging:
+  level:
+    es.in2: DEBUG
+
+# Actuator Configuration
+management:
+  endpoints:
+    enabled-by-default: false
+    web:
+      exposure:
+        include: health, info, loggers, metrics
+      base-path: /
+      path-mapping:
+        health: health
+        info: info
+        loggers: loggers
+        metrics: metrics
+  endpoint:
+    health:
+      enabled: true
+      show-details: always
+    loggers:
+      enabled: true
+    metrics:
+      enabled: true
+
+# Documentation Configuration
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui
+    tags-sorter: alpha
+    operations-sorter: method
+
+certificate:
+  key-store-password: ""
